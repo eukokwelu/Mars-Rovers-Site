@@ -24,5 +24,6 @@ def about():  # put application's code here
 
 
 if __name__ == "__main__":
+    app.jinja_env.cache = {}
     app.run(debug=True)
     app.run()
