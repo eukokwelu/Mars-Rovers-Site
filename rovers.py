@@ -16,7 +16,9 @@ class Rover:
         if self.last_date == "":
             self.last_date = datetime.now()
             self.last_date = datetime.date(self.last_date)
-        self.landing_date = datetime.date(self.landing_date)  # some error here but it works
+        self.landing_date = datetime.date(
+            self.landing_date
+        )  # some error here but it works
         if self.landing_date < requested_date < self.last_date:
             return requested_date
         else:
@@ -33,12 +35,12 @@ class Rover:
                 if camera in self.cameras:
                     # :TODO: is there a better way to construct the query? we don't want to hardcode earth_date etc
                     our_request = (
-                            self.host
-                            + self.rover_name
-                            + "/photos?&earth_date="
-                            + str(date)
-                            + "/&camera="
-                            + camera
+                        self.host
+                        + self.rover_name
+                        + "/photos?&earth_date="
+                        + str(date)
+                        + "/&camera="
+                        + camera
                     )
                     answer = (requests.get(our_request)).json()
                     return answer
@@ -101,4 +103,40 @@ class Curiosity(Rover):
             "NAVCAM",
         ]
         self.rover_name = "curiosity"
-        self.landing_date = datetime(2012, 8, 5)
+        self.landing_date = datetime(2012, 8, 6)
+
+
+class Opportunity(Rover):
+    def __init__(self):
+        super().__init__()
+        # each rover has a distinct set of cameras
+        self.cameras = [
+            "FHAZ",
+            "RHAZ",
+            "MAST",
+            "CHEMCAM",
+            "MAHLI",
+            "MARDI",
+            "NAVCAM",
+        ]
+        self.rover_name = "opportunity"
+        self.landing_date = datetime(2004, 1, 25)
+        self.last_date = datetime(2018, 6, 10)
+
+
+class Spirit(Rover):
+    def __init__(self):
+        super().__init__()
+        # each rover has a distinct set of cameras
+        self.cameras = [
+            "FHAZ",
+            "RHAZ",
+            "MAST",
+            "CHEMCAM",
+            "MAHLI",
+            "MARDI",
+            "NAVCAM",
+        ]
+        self.rover_name = "spirit"
+        self.landing_date = datetime(2004, 1, 4)
+        self.last_date = datetime(2010, 3, 22)
