@@ -4,7 +4,8 @@ from wtforms.validators import DataRequired, ValidationError
 from wtforms.fields import DateField
 from datetime import datetime
 
-'''
+"""
+This was an attempt at a validator for submitting the date. Not cracked it yet :(
 def rover_available_dates(rover, field):
     rover_dates = {'curiosity': '01-01-2015'}
     message = 'not quite right'
@@ -16,11 +17,13 @@ def rover_available_dates(rover, field):
             return _check
         else:
             return ValidationError()
-'''
+"""
 
 
 class DateSubmissionForm(FlaskForm):
-    Rover = SelectField(choices=[('Curiosity'), ('Perseverance'), ('Opportunity'), ('Spirit')],
-                        validators=[DataRequired()])
-    Date = DateField(validators=[DataRequired()], format='%Y-%m-%d')
-    submit = SubmitField('Find')
+    Rover = SelectField(
+        choices=[("Curiosity"), ("Perseverance"), ("Opportunity"), ("Spirit")],
+        validators=[DataRequired()],
+    )
+    Date = DateField(validators=[DataRequired()], format="%Y-%m-%d")
+    submit = SubmitField("Find")
