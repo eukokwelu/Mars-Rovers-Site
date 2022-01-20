@@ -2,7 +2,6 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, SelectField, SubmitField
 from wtforms.validators import DataRequired, ValidationError
 from wtforms.fields import DateField
-from datetime import datetime
 
 """
 This was an attempt at a validator for submitting the date. Not cracked it yet :(
