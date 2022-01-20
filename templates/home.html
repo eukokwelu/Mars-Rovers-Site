@@ -1,6 +1,34 @@
 {% extends 'layout.html' %}
 {% block content %}
     <h1> Home </h1>
-    <img src="{{ image }}">
+    <div class="row g-5">
+        <div class="col-md-6">
+            <img src="{{ image }}" class="img-fluid">
+        </div>
+        <div class="col-md-6">
+
+            <div class="content-section">
+                <form method="POST" action="">
+                    {{ form.hidden_tag() }}
+                    <fieldset class="form-group">
+                        <legend class="" border-bottom mb-4>See what the rover was looking at!</legend>
+                        <div class="form-group mb-4">
+                            {{ form.Rover.label(class="form-control-label") }}
+                            {{ form.Rover(class="form-control form-control-lg") }}
+                        </div>
+                        <div class="form-group mb-4">
+                            {{ form.Date.label(class="form-control-label") }}
+                            {{ form.Date(class="form-control form-control-lg") }}
+                        </div>
+                    </fieldset>
+                    <div class="form-group mb-4">
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                </form>
+            </div>
+
+            </p>
+        </div>
+    </div>
 
 {% endblock content %}
