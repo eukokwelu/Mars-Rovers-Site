@@ -26,7 +26,10 @@ def home():  # put application's code here
     form = DateSubmissionForm()
     if form.validate_on_submit():
         returned_image = get_info(form.Rover.data, form.Date.data)
-        flash(f"Submitted!", "success")
+        if returned_image is False:
+            flash(f"There was a problem with your request :(", 'info')
+        else:
+            flash(f"Submitted!", "success")
 
         # return redirect(url_for('home'))
         return render_template("home.html", image=returned_image, form=form)

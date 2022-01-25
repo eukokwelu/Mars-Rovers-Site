@@ -34,12 +34,12 @@ class Rover:
                 if camera in self.cameras:
                     # :TODO: is there a better way to construct the query? we don't want to hardcode earth_date etc
                     our_request = (
-                        self.host
-                        + self.rover_name
-                        + "/photos?&earth_date="
-                        + str(date)
-                        + "/&camera="
-                        + camera
+                            self.host
+                            + self.rover_name
+                            + "/photos?&earth_date="
+                            + str(date)
+                            + "/&camera="
+                            + camera
                     )
                     answer = (requests.get(our_request)).json()
                     return answer
@@ -59,6 +59,8 @@ class Rover:
         """
         # this isn't the best, the loop stops at the first row so we grab the first image.
         # later we probably want to be able to return all the images, but that's easy enough.
+        if request_result is None:
+            return False
         for i in request_result["photos"]:
             return i["img_src"]
 
