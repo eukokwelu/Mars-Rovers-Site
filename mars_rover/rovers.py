@@ -12,13 +12,12 @@ class Rover:
         self.last_date = ""
 
     def check_date(self, requested_date):
-        # :TODO: add unit test for this and test it
+        if isinstance(requested_date, str):
+            return False
         if self.last_date == "":
             self.last_date = datetime.now()
             self.last_date = datetime.date(self.last_date)
-        self.landing_date = datetime.date(
-            self.landing_date
-        )  # some error here but it works
+        self.landing_date = datetime.date(self.landing_date)
         if self.landing_date < requested_date < self.last_date:
             return requested_date
         else:

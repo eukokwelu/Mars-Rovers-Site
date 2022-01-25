@@ -13,10 +13,11 @@ def get_info(selected_rover, date, camera="FHAZ"):
         raise AssertionError(f"Rover not available yet, you asked for {selected_rover}")
     #  check that the date is valid for the specified rover
     if rover.check_date(date):
-        print(date)
         response = rover.query_by_camera_and_earthdate(camera, date)
         first_image = rover.return_first_image(response)
         return first_image
+    else:
+        raise AssertionError("Date not valid")
 
 
 @app.route("/", methods=["GET", "POST"])

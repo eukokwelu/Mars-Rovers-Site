@@ -1,15 +1,20 @@
+import datetime
 import unittest
-from mars_rover import rovers
+from rovers import Rover, Perseverance, Curiosity, Spirit, Opportunity
 
 
 class TestRovers(unittest.TestCase):
 
     def setUp(self) -> None:
-        pass
+        self.pers = Perseverance()
 
     def test_check_date_empty(self):
         date = ''
-        self.assertFalse(rovers.Rover.check_date(date))
+        self.assertFalse(self.pers.check_date(date))
+
+    def test_check_date_datetime(self):
+        date = datetime.date(2021, 3, 1)
+        self.assertTrue(self.pers.check_date(date))
 
 
 if __name__ == '__main__':
