@@ -26,8 +26,9 @@ def home():  # put application's code here
     form = DateSubmissionForm()
     if form.validate_on_submit():
         returned_image = get_info(form.Rover.data, form.Date.data)
-        if returned_image is False:
+        if returned_image is False or None:
             flash(f"There was a problem with your request :(", 'info')
+            returned_image = 'static/Roverholding.png'
         else:
             flash(f"Submitted!", "success")
 

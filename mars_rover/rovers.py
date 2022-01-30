@@ -25,6 +25,7 @@ class Rover:
 
     def query_by_camera_and_earthdate(self, camera, date):
         try:
+
             # check that the camera requested exists for the specific rover
             if not self.cameras:
                 raise Exception(
@@ -43,15 +44,10 @@ class Rover:
                     )
                     answer = (requests.get(our_request)).json()
                     return answer
-        # some error handling so we know what the problem is each time
-        except requests.exceptions.HTTPError as errh:
-            print(errh)
-        except requests.exceptions.ConnectionError as errc:
-            print(errc)
-        except requests.exceptions.Timeout as errt:
-            print(errt)
-        except requests.exceptions.RequestException as err:
+        # some error handling so we know what the problem is
+        except requests.exceptions as err:
             print(err)
+            return False
 
     def return_first_image(self, request_result):
         """
@@ -59,7 +55,7 @@ class Rover:
         """
         # this isn't the best, the loop stops at the first row so we grab the first image.
         # later we probably want to be able to return all the images, but that's easy enough.
-        if request_result is None:
+        if request_result is None or False:
             return False
         for i in request_result["photos"]:
             return i["img_src"]
