@@ -26,13 +26,15 @@ def home():  # put application's code here
     form = DateSubmissionForm()
     if form.validate_on_submit():
         returned_image = get_info(form.Rover.data, form.Date.data)
-        if returned_image is False or None:
+        if returned_image is None:
+            flash(f"There was a problem with your request :(", 'info')
+            returned_image = 'static/Roverholding.png'
+        elif 'nasa' not in returned_image:
             flash(f"There was a problem with your request :(", 'info')
             returned_image = 'static/Roverholding.png'
         else:
             flash(f"Submitted!", "success")
-
-        # return redirect(url_for('home'))
+            
         return render_template("home.html", image=returned_image, form=form)
     return render_template("home.html", image="", form=form)
 
