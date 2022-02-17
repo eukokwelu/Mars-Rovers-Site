@@ -1,4 +1,4 @@
-from flask import render_template, flash
+from flask import render_template, flash, Flask
 from mars_rover import app
 from mars_rover.forms import DateSubmissionForm
 from mars_rover import rovers
@@ -34,7 +34,7 @@ def home():  # put application's code here
             returned_image = 'static/Roverholding.png'
         else:
             flash(f"Submitted!", "success")
-            
+
         return render_template("home.html", image=returned_image, form=form)
     return render_template("home.html", image="", form=form)
 
