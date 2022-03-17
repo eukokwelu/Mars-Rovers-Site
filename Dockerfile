@@ -3,8 +3,7 @@ ENV STATIC_URL /static
 ENV STATIC_PATH /app/mars_rover/static
 COPY requirements.txt /tmp/
 
-
-RUN python3 -m pip install --upgrade pip
+RUN pip3 install -U pip
 RUN pip3 install -r /tmp/requirements.txt
 
 COPY . /app
