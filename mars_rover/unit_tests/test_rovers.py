@@ -9,7 +9,7 @@ class TestRovers(unittest.TestCase):
         self.pers = Perseverance()
 
     def test_check_date_empty(self):
-        date = ''
+        date = 'bad_date'
         self.assertFalse(self.pers.check_date(date))
 
     def test_check_date_datetime(self):
