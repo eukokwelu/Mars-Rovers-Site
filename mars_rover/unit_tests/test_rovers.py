@@ -10,7 +10,7 @@ class TestRovers(unittest.TestCase):
 
     def test_check_date_empty(self):
         date = ''
-        self.assertTrue(self.pers.check_date(date))
+        self.assertFalse(self.pers.check_date(date))
 
     def test_check_date_datetime(self):
         date = datetime.date(2021, 3, 1)
